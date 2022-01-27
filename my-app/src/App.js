@@ -10,7 +10,7 @@ function App() {
             setTodos([
                 ...todos,
                 {
-                    id: new Date().toString(),
+                    id: new Date().toISOString(),
                     text,
                     completed: false,
                 }
