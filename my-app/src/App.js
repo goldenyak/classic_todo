@@ -2,8 +2,8 @@ import './App.css';
 import React, {useState} from "react";
 
 function App() {
-    const [todos, setTodos] = React.useState([]);
-    const [text, setText] = useState('');
+    const [todos, setTodos] = React.useState([]); // стейт для тудушек
+    const [text, setText] = useState('');  // стейт для инпута, куда вводим название тудушки (главный инпут)
 
     const addTodo = () => {
         if (text.trim().length) {
@@ -17,11 +17,11 @@ function App() {
             ])
             setText('');
         }
-    }
+    }  // функция добавления тудушки
 
     const removeTodo = (todoID) => {
         setTodos(todos.filter(todo => todo.id !== todoID))
-    }
+    } // функция удаления тудушки
 
     const toggleTodoComplete = (todoID) => {
         setTodos(
@@ -35,7 +35,7 @@ function App() {
                 }
             )
         )
-    }
+    } // функция изменения чекбокса (галочка есть или галочки нету)
 
 
     return (
