@@ -1,5 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
+import InputField from "./components/InputField";
+import TodoItem from "./components/TodoItem";
 
 function App() {
     const [todos, setTodos] = React.useState([]); // стейт для тудушек
@@ -40,21 +42,17 @@ function App() {
 
     return (
         <div className="App">
-            <label>
-                <input value={text} onChange={(e) => setText(e.currentTarget.value)} placeholder="Новая задача"/>
-                <button onClick={addTodo} className="addButton">Добавить</button>
-            </label>
+            <InputField addTodo={addTodo} text={text} setText={setText}/>
             <ul>
-                {todos.map(todo => <li key={todo.id}>
-                    <input type="checkbox" checked={todo.completed} onChange={() => toggleTodoComplete(todo.id)}/>
-                    <span>{todo.text}</span>
-                    <button onClick={() => removeTodo(todo.id)} style={{
-                        color: 'red',
-                        border: 'none',
-                        backgroundColor: 'white',
-                        cursor: 'pointer',
-                    }}>&times;</button>
-                </li>)}
+                {todos.map(todo =>
+                    <li key={todo.id}>
+                        <TodoItem text={todo.text}
+                                  completed={todo.completed}
+                                  id={todo.id}
+                                  removeTodo={removeTodo}
+                                  toggleTodoComplete={toggleTodoComplete}
+                        />
+                    </li>)}
             </ul>
         </div>
     );
